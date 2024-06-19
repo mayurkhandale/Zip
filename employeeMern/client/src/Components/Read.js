@@ -31,7 +31,7 @@ function Read() {
         <div>
 
             <Typography variant="h3" alignCenter component="div" sx={{ flexGrow: 1, textAlign: 'center', p: 2, color: '#ff000057' }}>
-                Employee Records
+                Employee Recordss
             </Typography>
             {employee.length ?
                 <TableContainer component={Paper} className="table-container" >
