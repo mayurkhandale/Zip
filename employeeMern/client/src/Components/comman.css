@@ -31,3 +31,20 @@
 .table-container tbody tr td{
   text-align: center;
 }
+
+/* zoomable Image  css*/
+.zoomable-image {
+  position: relative;
+  overflow: hidden;
+}
+
+.zoomable-image img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  transition: transform 0.3s ease;
+}
+
+.zoomable-image:hover img {
+  transform: scale(1.9); /* Increase the scale for zoom effect */
+}

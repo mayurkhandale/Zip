@@ -63,7 +63,7 @@ function Update() {
                   <TableCell>{items.age}</TableCell>
                   <TableCell>{items.desg}</TableCell>
                   <TableCell>{items.salary}</TableCell>
-                  <TableCell>  <img src={`data:image/jpeg;base64,${items.image.buffer}`} alt="Employee" className="logo"/></TableCell>
+                  <TableCell className="zoomable-image">  <img src={`data:image/jpeg;base64,${items.image.buffer}`} alt="Employee" className="logo"/></TableCell>
                   <TableCell><Button variant="outlined" color="secondary" onClick={()=>updateUser(items)}>Update</Button></TableCell>
                 </TableRow>
               )

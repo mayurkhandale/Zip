@@ -42,13 +42,13 @@ function Write() {
       id: 4, desg: "Business Analysis",
     },
     {
-      id: 5, desg: "Ruby developer",
+      id: 5, desg: "Dot Net developer",
     },
     {
       id: 6, desg: "C# developer",
     },
     {
-      id: 7, desg: "php developer",
+      id: 7, desg: "React Native developer",
     },
     {
       id: 8, desg: "Dot Net developer",
@@ -59,6 +59,20 @@ function Write() {
     {
       id: 10, desg: "Data  Analysis",
     },
+    {
+      id: 11, desg: "Ui Developer",
+    },
+    {
+      id: 12, desg: "HR Executive",
+    },
+    {
+      id: 13, desg: "Mern Stack",
+    },
+    {
+      id: 14, desg: "Mean Stack",
+    },
+    
+
   ]
   const defaultProps = {
     options: list,
@@ -204,11 +218,15 @@ function Write() {
           <Select
             labelId="demo-simple-select-label"
             id="demo-simple-select"
+           
             value={data.desg}
+            displayEmpty
             label="desg"
             name="desg"
             onChange={handleChange}
-          >
+          ><MenuItem value="">
+          Select the value
+        </MenuItem>
             {
               list.map(item => {
                 return (
