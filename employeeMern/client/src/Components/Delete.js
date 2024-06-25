@@ -2,11 +2,15 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './comman.css'
 import noRecord from '../Assets/norecord.png'
-import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Typography, Button, CircularProgress, Box } from '@mui/material';
+import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Typography, Button, CircularProgress, Box,Stack,Pagination } from '@mui/material';
 let URl = 'http://localhost:4000/read'
 function Delete() {
   const [employee, setEmployee] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const itemsPerPage=5;
+  const [page, setPage] =useState(1);
+  const sliceStart = (page - 1) * itemsPerPage;
+  const sliceEnd = sliceStart + itemsPerPage;
   console.log(employee, '66::')
   let getDatafromServer = async () => {
     try {
@@ -48,7 +52,9 @@ function Delete() {
     }, 3000)
 
   }
-
+  const handleChange = (event, value) => {
+    setPage(value);
+  };
 
 
   return (
@@ -75,7 +81,7 @@ function Delete() {
                 </TableRow>
               </TableHead>
               <TableBody>
-                {employee.length && employee.map((items, key) => {
+                {employee.length && employee.slice(sliceStart,sliceEnd).map((items, key) => {
                   return (
                     <TableRow
                       key={items.id}
@@ -96,6 +102,14 @@ function Delete() {
               </TableBody>
 
             </Table>
+            <Stack spacing={2}>
+            <Typography>Page: {page}</Typography>
+            <Pagination
+              count={Math.ceil(employee.length / 5)}
+              page={page}
+              onChange={handleChange}
+            />
+          </Stack>
           </TableContainer> : <img src={noRecord} alt='no Recor Found' className='norecord' />
       }
 
