@@ -7,7 +7,11 @@ import Write from './Components/Write';
 import Update from './Components/Update';
 import Delete from './Components/Delete';
 import NoPageFound from './Components/NoPageFound';
+import Login from './Components/Login';
 import { styled } from '@mui/material/styles';
+import { AuthProvider } from './Components/AuthContext';
+import PrivateRoute from './Components/PrivateRoute';
+import ErrorPage from './Components/ErrorPage';
 import './App.css';
 import { AppBar, Toolbar, Typography, Button, TextField, Box, Autocomplete, Stack, InputLabel, MenuItem, Select, Alert } from '@mui/material';
 const VisuallyHiddenInput = styled('input')({
@@ -26,16 +30,20 @@ function App() {
   return (
     <div>
       <NavBar />
-     
-      <Routes>
+       <AuthProvider>
+       <Routes>
         <Route path='/' element={<Write />} />
-        <Route path='Write' element={<Write />} />
-        <Route path='read' element={<Read />} />
-        <Route path='update' element={<Update />} />
-        <Route path='delete' element={<Delete />} />
+        <Route path='login' element={<Login/>}/>
+        <Route path='Write' element={<Write />}/>
+        <Route path='read' element={<PrivateRoute element={<Read/>}/>} />
+        <Route path='update' element={<PrivateRoute element={<Update/>}/>} />
+        <Route path='delete' element={<PrivateRoute element={<Delete/>}/>} />
         <Route path='*' element={<NoPageFound />} />
-
+        <Route path='error' element={<ErrorPage />} />
+        
       </Routes>
+       </AuthProvider>
+    
     </div>
   );
 }

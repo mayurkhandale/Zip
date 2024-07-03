@@ -21,12 +21,14 @@ const dbStorage = multer.memoryStorage({})
 const upload = multer({ storage: dbStorage });
 
 app.use(express.json({ extends: true }))
+// this is get call for getting data
 app.get('/read', async (req, res) => {
   console.log('trigger')
   let findeData = await dataModel.find({})
 
   res.status(200).json({ messagae: "data from server", data: findeData })
 });
+// this is update call to update employee data
 app.put('/update/:id', upload.single('image'), async (req, res) => {
   try {
     const data  = JSON.parse(req.body.data);
@@ -37,6 +39,7 @@ app.put('/update/:id', upload.single('image'), async (req, res) => {
   }
 
 })
+// this is delete call to delete employee 
 app.delete('/delete/:id', async (req, res) => {
   console.log(req.params, '29::')
   try {
@@ -52,6 +55,7 @@ app.delete('/delete/:id', async (req, res) => {
   }
 
 })
+// this is post call to  create employee data
 app.post('/write', upload.single('image'), async (req, res) => {
   try {
     const { data } = req.body;
@@ -65,10 +69,20 @@ app.post('/write', upload.single('image'), async (req, res) => {
   } catch (error) {
     res.status(500).send({ error: error.message });
   }
+  app.post('/login',async(req,res)=>{
+    console.log(req,res,'73::')
+    try{
+       
+    }catch(error){
+       console.log(error,'76::')
+    }
+  })
 
 
 
 })
+
+// server running on port 
 app.listen(port, () => {
   console.log(`server is running on port`, port)
 })

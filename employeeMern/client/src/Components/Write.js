@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useLocation } from 'react-router-dom';
+import { useLocation ,useNavigate} from 'react-router-dom';
 import { styled } from '@mui/material/styles';
+import AdComponent from './AdComponent';
 import { AppBar, Toolbar, Typography, Button, TextField, Box, Autocomplete, Stack, InputLabel, MenuItem, Select, Alert } from '@mui/material';
 const VisuallyHiddenInput = styled('input')({
   clip: 'rect(0 0 0 0)',
@@ -15,7 +16,8 @@ const VisuallyHiddenInput = styled('input')({
   width: 1,
 });
 function Write() {
-  const location = useLocation()
+  const location = useLocation();
+  const navigate=useNavigate()
   console.log(location, location.state, location.state?.flag, '19::')
   let userData = location.state?.flag ? location.state.data : {
     id: '',
@@ -106,7 +108,9 @@ function Write() {
       })
     }
   }
-
+// const dataaa=()=>{
+//   console.log(d)
+// }
   const handelPost = async () => {
 
     console.log('hiii')
@@ -116,6 +120,7 @@ function Write() {
         formData.append("data", JSON.stringify(data))
         console.log(data._id, '105:');
         formData.append('image', data.image);
+        console.log(formData,'122::')
         if (location.state?.flag) {
           console.log('update', '103::')
           let respose = await axios.put(`http://localhost:4000/update/${data._id}`, formData , {
@@ -136,7 +141,7 @@ function Write() {
           })
           console.log(respose, '106')
           if (respose.data) {
-            alert(respose.data.message)
+            alert(respose.data )
           }
         }
 
@@ -185,7 +190,7 @@ function Write() {
       <Typography variant="h3" alignCenter component="div" sx={{ flexGrow: 1, textAlign: 'center', p: 2, color: '#ff000057' }}>
         {location.state?.flag ?'Update':'Create'} Employee Account
       </Typography>
-
+      <AdComponent adContent="<p>Buy this amazing product!</p>" />
       <Box
         component="form"
         sx={{
@@ -256,9 +261,12 @@ function Write() {
       </Box>
 
 
-
+  
       <Button variant="outlined" sx={{ margin: '30px' }} onClick={handelPost}>
-        {location.state?.flag ? 'Update User' : 'Create User'}
+        {location.state?.flag ? 'Update User' : 'Sign Up'}
+      </Button>
+      <Button variant="outlined" sx={{ margin: '30px' }} onClick={()=>navigate('/login')}>
+        Sign In
       </Button>
 
 
