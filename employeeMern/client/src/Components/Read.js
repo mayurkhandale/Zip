@@ -74,7 +74,7 @@ function Read() {
                     key={items.id}
                     sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
                   >
-                    <TableCell component="th" scope="row">
+                    <TableCell component="td" scope="row">
                       {items.id}
                     </TableCell>
                     <TableCell>{items.name}</TableCell>

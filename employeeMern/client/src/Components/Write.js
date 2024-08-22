@@ -29,6 +29,7 @@ function Write() {
     image: ""
   }
   const [data, setData] = useState(userData)
+  console.log(data,'52')
   const [isSubmit, setSubmit] = useState(true);
   const list = [
     {
@@ -118,7 +119,7 @@ function Write() {
       if (isSubmit) {
         const formData = new FormData();
         formData.append("data", JSON.stringify(data))
-        console.log(data._id, '105:');
+        console.log(data, '105:');
         formData.append('image', data.image);
         console.log(formData,'122::')
         if (location.state?.flag) {
@@ -268,7 +269,7 @@ function Write() {
       <Button variant="outlined" sx={{ margin: '30px' }} onClick={()=>navigate('/login')}>
         Sign In
       </Button>
-
+     
 
     </div>
   )

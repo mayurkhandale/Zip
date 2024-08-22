@@ -1,23 +1,22 @@
-.norecord{
-        display: block;
-        margin-left: auto;
-        margin-right: auto;
-        width: 50%;
-        margin-top: 100px;
-      }
+.norecord {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+  margin-top: 100px;
+}
 
-.logo{
-    height: 100px;
-    width: 101px;
-    border-radius: 100px;
-    margin: 6px;
+.logo {
+  height: 78px;
+  width: 78px;
+  border-radius: 100px;
+  margin: 6px;
 }
 .sticky-header {
   position: sticky;
   top: 0;
   background-color: #fff;
   z-index: 1;
- 
 }
 .sticky-header th {
   font-weight: bold;
@@ -26,16 +25,17 @@
 .table-container {
   max-height: 440px; /* Adjust the height as needed */
   overflow: auto;
- 
 }
-.table-container tbody tr td{
+.table-container tbody tr td {
   text-align: center;
 }
 
 /* zoomable Image  css*/
-.zoomable-image {
+td.zoomable-image {
   position: relative;
   overflow: hidden;
+  display: flex;
+  justify-content: center;
 }
 
 .zoomable-image img {
@@ -46,5 +46,24 @@
 }
 
 .zoomable-image:hover img {
-  transform: scale(1.9); /* Increase the scale for zoom effect */
+  transform: scale(1.5); /* Increase the scale for zoom effect */
+}
+
+.footer {
+  background-color: #4d4b4b;
+  color: #fff;
+  padding: 10px 16px;
+  display: flex;
+  justify-content: space-between;
+}
+.footer-img img {
+  border-radius: 20%;
+  height: 50%;
+}
+.footer-comman{
+  align-content: center;
+}
+.icon-list{
+  display: flex;
+  justify-content: space-between;
 }
