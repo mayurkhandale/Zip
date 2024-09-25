@@ -41,27 +41,29 @@ const VisuallyHiddenInput = styled("input")({
 });
 function App() {
   return (
-    <div>
-       <AuthProvider>
-      <NavBar />
-     
-        <Routes>
-          <Route path="/" element={<Write />} />
-          <Route path="login" element={<Login />} />
-          <Route path="Write" element={<Write />} />
-          <Route path="read" element={<PrivateRoute element={<Read />} />} />
-          <Route
-            path="update"
-            element={<PrivateRoute element={<Update />} />}
-          />
-          <Route
-            path="delete"
-            element={<PrivateRoute element={<Delete />} />}
-          />
-          <Route path="*" element={<NoPageFound />} />
-          <Route path="error" element={<ErrorPage />} />
-        </Routes>
-      </AuthProvider>
+    <div className="main-page">
+      <div>
+        <AuthProvider>
+          <NavBar />
+
+          <Routes>
+            <Route path="/" element={<Write />} />
+            <Route path="login" element={<Login />} />
+            <Route path="Write" element={<Write />} />
+            <Route path="read" element={<PrivateRoute element={<Read />} />} />
+            <Route
+              path="update"
+              element={<PrivateRoute element={<Update />} />}
+            />
+            <Route
+              path="delete"
+              element={<PrivateRoute element={<Delete />} />}
+            />
+            <Route path="*" element={<NoPageFound />} />
+            <Route path="error" element={<ErrorPage />} />
+          </Routes>
+        </AuthProvider>
+      </div>
       <Footer />
     </div>
   );

@@ -2,6 +2,9 @@ require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
 const multer = require("multer");
+// email package
+const bodyParser = require('body-parser');
+const nodemailer = require("nodemailer");
 const app = express();
 const port = process.env.PORT | 4000;
 const dataModel = require("./Model/DataModel");
@@ -11,6 +14,15 @@ const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 coonectDb();
 app.use(cors());
+app.use(bodyParser.json());
+// create Tranport
+const transporter = nodemailer.createTransport({
+  service: "gmail",
+  auth: {
+    user: "khandalemayur574@gmail.com",
+    pass: "khandale@123",
+  },
+});
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
     cb(null, "uploads/");
@@ -103,6 +115,29 @@ app.post("/login", async (req, res) => {
     res.json({ token });
   } catch (error) {
     console.log("Error in login route ", error.message, error);
+    res.status(500).json({ error: " internal eroor  ... " });
+  }
+});
+
+// email sender post call
+app.post("/sendemail", (req, res) => {
+//  res.send("okpokpkpook;tkre;ktr;oprtkporetkpoertkporetkopretkporetkreopteoptkreoptdfdgsg")
+    const {to,subject,message}=req.body
+  console.log(req.body,'126')
+  const mailOptions = {
+    from: "khandalemayur574@gmail.com",
+    to,
+    subject,
+    message
+  }
+  try {
+    transporter.sendMail(mailOptions, (error, info) => {
+      if (error) {
+        return res.status(500).send(error.toString());
+      }
+      res.json({ message: "Email sent successfully!" });
+    });
+  } catch (error) {
     res.status(500).json({ error: " internal eroor  ... " });
   }
 });
